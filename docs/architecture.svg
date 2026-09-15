@@ -17,6 +17,8 @@
       .box { stroke-width: 2; rx: 14; filter: url(#shadow); }
       .arrow { stroke: #486581; stroke-width: 3; fill: none; marker-end: url(#arrow); }
       .dashed { stroke-dasharray: 8 8; }
+      .signal { fill: #2b9ac6; }
+      .pulse { transform-box: fill-box; transform-origin: center; }
     </style>
   </defs>
 
@@ -47,6 +49,16 @@
   <text x="378" y="216" class="small">HTTP / JSON</text>
   <path d="M 748 236 L 832 236" class="arrow"/>
   <text x="759" y="216" class="small">provider calls</text>
+
+  <circle r="6" class="signal">
+    <animateMotion dur="2.8s" repeatCount="indefinite" path="M 368 236 L 452 236"/>
+  </circle>
+  <circle r="6" class="signal" fill="#e08b24">
+    <animateMotion dur="2.8s" begin="0.9s" repeatCount="indefinite" path="M 748 236 L 832 236"/>
+  </circle>
+  <rect x="452" y="154" width="296" height="164" class="pulse" fill="none" stroke="#2f9e5b" stroke-width="2" opacity="0.6" rx="14">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2.8s" repeatCount="indefinite"/>
+  </rect>
 
   <rect x="194" y="430" width="348" height="154" class="box" fill="#f0f4f8" stroke="#829ab1"/>
   <text x="226" y="474" class="label">Application storage</text>
