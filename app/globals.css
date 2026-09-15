@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 6% 7%;
+  --foreground: 0 0% 96%;
+  --card: 240 5% 10%;
+  --card-foreground: 0 0% 96%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 240 6% 7%;
+  --secondary: 240 4% 14%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 64%;
+  --accent: 193 58% 48%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 4% 18%;
+  --input: 240 4% 18%;
+  --ring: 193 58% 48%;
+  --radius: 8px;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html,
+body {
+  min-height: 100%;
+  background: hsl(var(--background));
+}
+
+body {
+  color: hsl(var(--foreground));
+  overflow: hidden;
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: hsl(var(--accent) / 0.28);
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border: 2px solid hsl(var(--background));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.markdown-body {
+  color: hsl(var(--foreground));
+}
+
+.markdown-body :where(p, ul, ol, pre, blockquote) {
+  margin-block: 0.55rem;
+}
+
+.markdown-body :where(ul, ol) {
+  padding-left: 1.25rem;
+}
+
+.markdown-body code {
+  border-radius: 4px;
+  background: hsl(var(--muted));
+  padding: 0.12rem 0.28rem;
+  font-family: var(--font-geist-mono);
+  font-size: 0.86em;
+}
+
+.markdown-body pre {
+  overflow: auto;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border));
+  background: hsl(240 6% 6%);
+  padding: 0.875rem;
+}
+
+.markdown-body pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* ── Streaming cursor ── */
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor::after {
+  content: "▍";
+  display: inline;
+  color: hsl(var(--accent));
+  animation: blink-caret 0.8s steps(2) infinite;
+  font-weight: 300;
+  margin-left: 1px;
+}
+
+/* ── Code block with header ── */
+.code-block-wrapper {
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid hsl(var(--border));
+  background: hsl(240 6% 6%);
+  overflow: hidden;
+  margin-block: 0.55rem;
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: hsl(240 5% 10%);
+  border-bottom: 1px solid hsl(var(--border));
+  font-size: 11px;
+  font-family: var(--font-geist-mono);
+  color: hsl(var(--muted-foreground));
+}
+
+.code-block-header .lang-label {
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+}
+
+.code-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+  font-family: var(--font-geist-sans);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.code-copy-btn:hover {
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+}
+
+.code-copy-btn.copied {
+  color: hsl(152 60% 52%);
+}
+
+.code-block-wrapper pre {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* ── Message action buttons ── */
+.msg-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.group:hover .msg-actions {
+  opacity: 1;
+}
+
+.msg-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.msg-action-btn:hover {
+  background: hsl(var(--secondary));
+  color: hsl(var(--foreground));
+}
+
+.msg-action-btn.copied-feedback {
+  color: hsl(152 60% 52%);
+}
+
+/* ── Edit inline textarea ── */
+.edit-textarea {
+  width: 100%;
+  min-height: 56px;
+  resize: vertical;
+  border-radius: 6px;
+  border: 1px solid hsl(var(--accent) / 0.5);
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.edit-textarea:focus {
+  border-color: hsl(var(--accent));
+  box-shadow: 0 0 0 2px hsl(var(--accent) / 0.15);
+}
+
+.edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* ── Diff panel ── */
+.diff-pre {
+  tab-size: 4;
+  white-space: pre;
+  word-break: break-all;
+}
+
+.diff-pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.diff-pre::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 999px;
+}
+
