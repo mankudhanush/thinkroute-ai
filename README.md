@@ -1,14 +1,41 @@
+<div align="center">
+
 # ThinkRoute AI
 
-ThinkRoute AI is a repository-aware, multi-provider AI workspace. It combines a Next.js interface with a FastAPI service that manages providers, selects models, routes prompts by intent, stores conversation history, and supplies repository context to code-focused chats.
+### Route every prompt to the right model, with the right repository context.
 
-## What it does
+ThinkRoute AI is a repository-aware, multi-provider AI workspace for focused engineering conversations.
 
-- Connects supported hosted providers and local Ollama models.
-- Supports manual model selection and automatic routing by prompt intent and complexity.
-- Persists conversations in a local SQLite database during development.
-- Indexes, retrieves, and sends repository context to RAG chat workflows.
-- Exposes inference and provider state through a focused web workspace.
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-frontend-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Python](https://img.shields.io/badge/Python-backend-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+
+[Open the repository](https://github.com/mankudhanush/thinkroute-ai) · [Read the API docs](http://127.0.0.1:8000/docs) · [Report an issue](https://github.com/mankudhanush/thinkroute-ai/issues)
+
+</div>
+
+## At a glance
+
+ThinkRoute AI combines a Next.js workspace with a FastAPI orchestration layer. It connects hosted and local providers, supports manual or intent-aware model selection, stores conversation history, and brings repository context into code-focused chats.
+
+| Capability | What it provides |
+| --- | --- |
+| **Multi-provider chat** | Connect hosted providers and local Ollama models from one workspace. |
+| **Automatic routing** | Select a model using prompt intent and task complexity. |
+| **Repository intelligence** | Index, retrieve, and apply code context to RAG workflows. |
+| **Conversation history** | Persist local conversations and provider state in SQLite. |
+
+## Contents
+
+- [Architecture](#architecture)
+- [Requirements](#requirements)
+- [Local setup](#local-setup)
+- [Configuration](#configuration)
+- [API surface](#api-surface)
+- [Development](#development)
+- [Documentation](#documentation)
+- [Security](#security-and-data-handling)
 
 ## Architecture
 
@@ -19,6 +46,16 @@ The application runs as two local services. The main request and data boundaries
 The diagram is also available as [`docs/architecture.svg`](docs/architecture.svg).
 
 The frontend lives in `app/`, `components/`, `hooks/`, `lib/`, `services/`, `stores/`, and `types/`. The backend and provider adapters live in `backend/app/`. Design proposals and context-engine notes are in `docs/`.
+
+### Technology stack
+
+| Layer | Technologies |
+| --- | --- |
+| Web application | Next.js, React, TypeScript, Tailwind CSS, Zustand |
+| API service | FastAPI, Pydantic, Uvicorn, Python |
+| Model access | Provider adapters, hosted APIs, Ollama |
+| Persistence | SQLite for local conversation and provider state |
+| Repository context | Chunking, indexing, retrieval, RAG, and editing services |
 
 ## Requirements
 
@@ -91,7 +128,7 @@ Provider credentials are entered through the provider workflow or configured acc
 
 The complete request and response schemas are generated at `http://127.0.0.1:8000/docs` while the backend is running.
 
-## Development commands
+## Development
 
 ```powershell
 # Frontend
@@ -105,6 +142,8 @@ python -m pytest
 
 The Python test command runs the available backend and integration tests. Install any test-only dependencies required by the tests in the active virtual environment.
 
+Before opening a pull request, run `npm run typecheck` and `npm run build`. Start the backend as well when changing API, provider, routing, or repository-intelligence behavior.
+
 ## Security and data handling
 
 - Keep `backend/.env` and `.env.local` local; both are ignored by Git.
@@ -114,23 +153,24 @@ The Python test command runs the available backend and integration tests. Instal
 - Review repository context and editing permissions before connecting an untrusted workspace.
 - `backend/data/`, build output, virtual environments, caches, and local tooling are ignored by Git.
 
-## Project documentation
+## Documentation
 
+- [Backend setup and API notes](backend/README.md)
+- [Context engine proposal](docs/context_engine_proposal.md)
+- [Context engine redesign](docs/context-engine-redesign.md)
+- [Architecture source image](docs/architecture.svg)
 
-## Publish to GitHub
+## Contributing
 
-The project is ready for its first remote push. After installing the [GitHub CLI](https://cli.github.com/) and signing in with `gh auth login`, run these commands from the repository root:
-
-```powershell
-gh repo create thinkroute-ai --private --source=. --remote=origin --push
-```
-
-Use `--public` instead of `--private` only when the source code and provider integration details are ready for public distribution. If the repository already exists, configure the remote and push the existing commit instead:
+The public repository is available at [github.com/mankudhanush/thinkroute-ai](https://github.com/mankudhanush/thinkroute-ai). Create a focused branch, keep credentials and generated data out of commits, and include the relevant typecheck, build, or backend test results in pull requests.
 
 ```powershell
-git remote add origin https://github.com/<your-account>/thinkroute-ai.git
-git push -u origin master
+git checkout -b feature/your-change
+git add .
+git commit -m "Describe the change"
+git push -u origin feature/your-change
 ```
+
 ## License
 
 No license has been selected yet. Add a license before accepting external contributions or redistributing the project.
