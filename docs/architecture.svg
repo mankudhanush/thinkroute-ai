@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title description">
+  <title id="title">ThinkRoute AI architecture</title>
+  <desc id="description">A browser frontend communicates with a FastAPI backend, which routes requests to provider adapters and stores application and repository data.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#102a43" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#486581"/>
+    </marker>
+    <style>
+      .title { font: 700 28px system-ui, sans-serif; fill: #102a43; }
+      .subtitle { font: 400 15px system-ui, sans-serif; fill: #627d98; }
+      .label { font: 700 18px system-ui, sans-serif; fill: #102a43; }
+      .detail { font: 400 14px system-ui, sans-serif; fill: #486581; }
+      .small { font: 600 13px system-ui, sans-serif; fill: #627d98; }
+      .box { stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .arrow { stroke: #486581; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke-dasharray: 8 8; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="680" fill="#f7fafc"/>
+  <rect x="34" y="28" width="1132" height="624" rx="22" fill="#ffffff" stroke="#d9e2ec" stroke-width="2"/>
+  <text x="72" y="78" class="title">ThinkRoute AI architecture</text>
+  <text x="72" y="106" class="subtitle">A two-service workspace for routed chat, provider access, and repository-aware context.</text>
+
+  <rect x="72" y="154" width="296" height="164" class="box" fill="#e3f8ff" stroke="#2b9ac6"/>
+  <text x="104" y="198" class="label">Next.js frontend</text>
+  <text x="104" y="228" class="detail">Browser workspace</text>
+  <text x="104" y="253" class="detail">Chat, routing, provider UI</text>
+  <text x="104" y="278" class="small">app/ components/ stores/</text>
+
+  <rect x="452" y="154" width="296" height="164" class="box" fill="#e6ffed" stroke="#2f9e5b"/>
+  <text x="484" y="198" class="label">FastAPI backend</text>
+  <text x="484" y="228" class="detail">HTTP API and orchestration</text>
+  <text x="484" y="253" class="detail">Manual and automatic routing</text>
+  <text x="484" y="278" class="small">backend/app/  :8000</text>
+
+  <rect x="832" y="154" width="296" height="164" class="box" fill="#fff4e6" stroke="#e08b24"/>
+  <text x="864" y="198" class="label">Provider adapters</text>
+  <text x="864" y="228" class="detail">Hosted model providers</text>
+  <text x="864" y="253" class="detail">Ollama and local inference</text>
+  <text x="864" y="278" class="small">Provider credentials stay server-side</text>
+
+  <path d="M 368 236 L 452 236" class="arrow"/>
+  <text x="378" y="216" class="small">HTTP / JSON</text>
+  <path d="M 748 236 L 832 236" class="arrow"/>
+  <text x="759" y="216" class="small">provider calls</text>
+
+  <rect x="194" y="430" width="348" height="154" class="box" fill="#f0f4f8" stroke="#829ab1"/>
+  <text x="226" y="474" class="label">Application storage</text>
+  <text x="226" y="504" class="detail">SQLite conversations</text>
+  <text x="226" y="529" class="detail">Provider and model state</text>
+  <text x="226" y="554" class="small">backend/data/thinkroute.db</text>
+
+  <rect x="658" y="430" width="348" height="154" class="box" fill="#f3f0ff" stroke="#8064b7"/>
+  <text x="690" y="474" class="label">Repository intelligence</text>
+  <text x="690" y="504" class="detail">Indexing and chunk generation</text>
+  <text x="690" y="529" class="detail">Retrieval, RAG, and editing</text>
+  <text x="690" y="554" class="small">Context-aware code workflows</text>
+
+  <path d="M 600 318 L 600 382 L 368 382 L 368 430" class="arrow"/>
+  <path d="M 600 318 L 600 382 L 832 382 L 832 430" class="arrow"/>
+  <text x="511" y="370" class="small">service orchestration</text>
+
+  <text x="600" y="625" text-anchor="middle" class="small">Frontend :3000  |  API :8000  |  Local development uses SQLite</text>
+</svg>

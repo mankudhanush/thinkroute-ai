@@ -12,18 +12,11 @@ ThinkRoute AI is a repository-aware, multi-provider AI workspace. It combines a 
 
 ## Architecture
 
-The application runs as two local services:
+The application runs as two local services. The main request and data boundaries are shown below:
 
-```text
-Browser (Next.js :3000)
-	|
-	| HTTP / JSON
-	v
-FastAPI (:8000) ---- Provider adapters ---- Hosted providers / Ollama
-	|
-	+---- SQLite conversation and provider state
-	+---- Repository indexing, retrieval, RAG, and editing services
-```
+![ThinkRoute AI architecture](docs/architecture.svg)
+
+The diagram is also available as [`docs/architecture.svg`](docs/architecture.svg).
 
 The frontend lives in `app/`, `components/`, `hooks/`, `lib/`, `services/`, `stores/`, and `types/`. The backend and provider adapters live in `backend/app/`. Design proposals and context-engine notes are in `docs/`.
 
