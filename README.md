@@ -123,10 +123,21 @@ The Python test command runs the available backend and integration tests. Instal
 
 ## Project documentation
 
-- [Backend setup and API notes](backend/README.md)
-- [Context engine proposal](docs/context_engine_proposal.md)
-- [Context engine redesign](docs/context-engine-redesign.md)
 
+## Publish to GitHub
+
+The project is ready for its first remote push. After installing the [GitHub CLI](https://cli.github.com/) and signing in with `gh auth login`, run these commands from the repository root:
+
+```powershell
+gh repo create thinkroute-ai --private --source=. --remote=origin --push
+```
+
+Use `--public` instead of `--private` only when the source code and provider integration details are ready for public distribution. If the repository already exists, configure the remote and push the existing commit instead:
+
+```powershell
+git remote add origin https://github.com/<your-account>/thinkroute-ai.git
+git push -u origin master
+```
 ## License
 
 No license has been selected yet. Add a license before accepting external contributions or redistributing the project.
